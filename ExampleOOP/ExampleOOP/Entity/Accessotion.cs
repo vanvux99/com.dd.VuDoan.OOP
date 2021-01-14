@@ -4,17 +4,18 @@ using System.Text;
 
 namespace ExampleOOP.Entity
 {
-    class Accessotion
+    class Accessotion : BaseRow
     {
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
-        public int ID { get; set; }
+        public override int ID { get; set; }
 
         public Accessotion()
         {
 
         }
 
+        //override
         public Accessotion(int _id, string _name)
         {
             ID = _id;

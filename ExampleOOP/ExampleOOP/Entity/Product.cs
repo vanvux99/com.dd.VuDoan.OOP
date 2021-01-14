@@ -4,13 +4,13 @@ using System.Text;
 
 namespace ExampleOOP.Entity
 {
-    class Product
+    class Product : BaseRow
     {
         public int CategoryId { get; set; }
 
-        public string Name { get; set; }
+        public override int ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public int ID { get; set; }
+        public override string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Product()
         {

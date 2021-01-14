@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ExampleOOP.Entity
 {
-    class Category
+    class Category : BaseRow
     {
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
-        public int ID { get; set; }
+        public override int ID { get; set; }
 
         public Category()
         {

@@ -24,17 +24,34 @@ namespace ExampleOOP.Demo
             }
         }
 
-
         public void SelectTableTest(string name)
         {
             List<object> list = database.SelectTable(name);
-            foreach (dynamic item in list)
+
+            switch (name)
             {
-                Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryId);
+                case "product":
+                    foreach (Product item in list)
+                    {
+                        Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryId);
+                    }
+                    break;
+
+                case "category":
+                case "accessory":
+                    foreach (dynamic item in list)
+                    {
+                        Console.WriteLine(item.ID + ", " + item.Name);
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Object invalid");
+                    break;
             }
         }
 
-        public void UpdateTableTest(object name, object row)
+        public void UpdateTableTest(string name, BaseRow row)
         {
             if (database.UpdateTable(name, row) == false)
             {
@@ -46,7 +63,7 @@ namespace ExampleOOP.Demo
             }
         }
 
-        public void UpdateTableTest(int id, string name, object row)
+        public void UpdateTableTest(int id, string name, BaseRow row)
         {
             if (database.UpdateTable(id, name, row) == false)
             {
@@ -82,53 +99,26 @@ namespace ExampleOOP.Demo
             }
         }
 
-        public void InitDatabase(string name)
+        public void InitDatabase(string name, object nameInsert)
         {
-            Random rnd = new Random();
-
-            string[] names = { "Rufus", "Bear", "Dakota", "Fido",
-                          "Vanya", "Samuel", "Koani", "Volodya",
-                          "Prince", "Yiska" };
-            int nameIndex = rnd.Next(names.Length);
-
-            string[] category =
-            {
-                "caterogy1", "caterogy2", "caterogy3", "caterogy4"
-            };
-            int categoryIndex = rnd.Next(category.Length);
-
-            string[] accessory =
-            {
-                "accessory1", "accessory2", "accessory3", "accessory4"
-            };
-            int accessoryIndex = rnd.Next(accessory.Length);
-
             switch (name)
             {
-                case "productTable":
-                    for (int i = 0; i < 10; i++)
-                    {
-                        string nameProductTable = names[nameIndex];
-                        InsertTableTest("productTable", new Product((i + 1), nameProductTable, (i + 1)));
-                    }
+                case "product":
+                    InsertTableTest("product", nameInsert);
                     break;
 
-                case "categoryTable":
-                    for (int i = 0; i < 10; i++)
-                    {
-                        InsertTableTest("categoryTable", new Category((i + 1), category[categoryIndex]));
-                    }
+                case "category":
+                    InsertTableTest("category", nameInsert);
+
                     break;
 
-                case "accessoryTable":
-                    for (int i = 0; i < 10; i++)
-                    {
-                        InsertTableTest("accessoryTable", new Accessotion((i + 1), accessory[accessoryIndex]));
-                    }
+                case "accessory":
+                    InsertTableTest("accessory", nameInsert);
+
                     break;
 
                 default:
-                    Console.WriteLine("Input error.");
+                    Console.WriteLine("Input error");
                     break;
             }
         }

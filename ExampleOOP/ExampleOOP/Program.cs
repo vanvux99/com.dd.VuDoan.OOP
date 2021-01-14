@@ -11,11 +11,78 @@ namespace ExampleOOP
     class Program
     {
         static void Main(string[] args)
-        {
+        {/*
+            DatabaseDemo demo = new DatabaseDemo();
+            Database database = new Database();
+            Random rnd = new Random();
+
+
+
+            string[] names = { "Rufus", "Bear", "Dakota", "Fido",
+                          "Vanya", "Samuel", "Koani", "Volodya",
+                          "Prince", "Yiska" };
+            int nameIndex = rnd.Next(1, names.Length);
+
+            *//*string[] category =
+            {
+                "caterogy1", "caterogy2", "caterogy3", "caterogy4"
+            };
+            int categoryIndex = rnd.Next(1, category.Length);
+
+            string[] accessory =
+            {
+                "accessory1", "accessory2", "accessory3", "accessory4"
+            };
+            int accessoryIndex = rnd.Next(1, accessory.Length);*//*
+
+
+            for (int i = 0; i < 1; i++)
+            {
+                demo.InitDatabase("product", new Product((i + 1), names[nameIndex], (i + 1)));*//*
+                demo.InitDatabase("category", new Category((i + 1), names[nameIndex]));
+                demo.InitDatabase("accessory", new Accessotion((i + 1), names[nameIndex]));*//*
+
+            }
+
+            Console.WriteLine("product");
+            try
+            {
+                if (database.productTable.Count <= 0)
+                {
+                    Console.WriteLine("table null");
+                }
+                foreach (Product item in database.productTable)
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }*/
+
+
+            // test product
+            Product product = new Product(1, "a", 1);
+
+            Console.WriteLine(product.ID);
+            Console.WriteLine(product.Name);
+            Console.WriteLine(product.CategoryId);
+
+            Category category = new Category(032418, "uchiha");
+
+            Console.WriteLine(category.ID);
+            Console.WriteLine(category.Name);
 
         }
     }
 }
+
+/** ngày mai hỏi chú
+ * 
+ * không được chấm gọi thẳng tới method thì phải làm cách nào
+ */
 
 
 

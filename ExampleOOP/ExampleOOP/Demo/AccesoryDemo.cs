@@ -10,12 +10,13 @@ namespace ExampleOOP.Demo
     {
         public void CreateAccessoryTest()
         {
-            //chưa viết
+            Accessotion product = new Accessotion(1, "testName");
         }
 
-        public void PrintAccessory(Accessotion product)
+        public void PrintAccessory(Accessotion accessotion)
         {
-            // câu 4, chưa viết gì cả
+            Console.WriteLine(accessotion.ID);
+            Console.WriteLine(accessotion.Name);
         }
     }
 }

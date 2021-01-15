@@ -8,63 +8,90 @@ using System.Text;
 
 namespace ExampleOOP.DAO
 {
-    class Database : BaseDAO
+    class Database
     {
-        public List<Product> productTable = new List<Product>();
-        public List<Category> categoryTable = new List<Category>();
-        public List<Accessotion> accessoryTable = new List<Accessotion>();
+        public static List<Product> productTable = new List<Product>();
+        public static List<Category> categoryTable = new List<Category>();
+        public static List<Accessotion> accessoryTable = new List<Accessotion>();
         public Database instants;
 
         string error;
-        public const string _category = "category";
-        public const string _product = "product";
-        public const string _accessory = "accessory";
-        const string _delete = "delete";
-        const string _truncate = "truncate";
+        const string CATEGORY = "category";
+        const string PRODUCT = "product";
+        const string ACCESSORY = "accessory";
+        const string DELETE = "delete";
+        const string TRUNCATE = "truncate";
+        
 
         // Add data to the database
         public bool InsertTable(string name, BaseRow row)
         {
             bool result = true;
+            int countTable = 0;
+            int countTableLaterInsert = 0;
 
             try
             {
                 if (row != null && name != null)
                 {
-                    if (name == _product)
+                    if (name == PRODUCT)
                     {
+                        countTable = productTable.Count;
                         Product parseProduct = (Product) row;
+
                         if (CheckId(parseProduct) == true)
+                        {
                             productTable.Add(parseProduct);
+                            countTableLaterInsert = productTable.Count;
+
+                            if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
+                                return false;
+                        }   
                         else
-                            result = false;
+                            return false;
                     }
-                    else if (name == _category)
+                    else if (name == CATEGORY)
                     {
+                        countTable = categoryTable.Count;
                         Category parseCategory = (Category) row;
+
                         if (CheckId(parseCategory) == true)
+                        {
                             categoryTable.Add(parseCategory);
+                            countTableLaterInsert = categoryTable.Count;
+
+                            if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
+                                return false;
+                        }     
                         else
-                            result = false;
+                            return false;
                     }
-                    else if (name == _accessory)
+                    else if (name == ACCESSORY)
                     {
+                        countTable = accessoryTable.Count;
                         Accessotion parseAsscessory = (Accessotion) row;
+
                         if (CheckId(parseAsscessory) == true)
+                        {
                             accessoryTable.Add(parseAsscessory);
+                            countTableLaterInsert = accessoryTable.Count;
+
+                            if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
+                                return false;
+                        }    
                         else
-                            result = false;
+                            return false;
                     }
                     else
-                        result = false;
+                        return false;
                 }
                 else
-                    result = false;
+                    return false;
             }
             catch (Exception ex)
             {
                 error = ex.Message.ToString();
-                result = false;
+                return false;
             }
 
             return result;
@@ -74,21 +101,22 @@ namespace ExampleOOP.DAO
         public List<object> SelectTable(string name)
         {
             List<object> list = new List<object>();
+
             try
             {
                 if (name != null)
                 {
-                    if (name == _product)
+                    if (name == PRODUCT)
                     {
-                        AddList(list, productTable);
+                        list = AddDataToList(list, productTable);
                     }
-                    else if (name == _category)
+                    else if (name == CATEGORY)
                     {
-                        AddList(list, categoryTable);
+                        list = AddDataToList(list, categoryTable);
                     }
-                    else if (name == _accessory)
+                    else if (name == ACCESSORY)
                     {
-                        AddList(list, accessoryTable);
+                        list = AddDataToList(list, accessoryTable);
                     }
                 }
             }
@@ -109,31 +137,31 @@ namespace ExampleOOP.DAO
             {
                 if (row != null && name != null)
                 {
-                    if (name == _product)
+                    if (name == PRODUCT)
                     {
                         if (UpdateTableAuto(name, row, productTable) == false)
-                            result = false;
+                            return false;
                     }
-                    else if (name == _category)
+                    else if (name == CATEGORY)
                     {
                         if (UpdateTableAuto(name, row, categoryTable) == false)
-                            result = false;
+                            return false;
                     }
-                    else if (name == _accessory)
+                    else if (name == ACCESSORY)
                     {
                         if (UpdateTableAuto(name, row, accessoryTable) == false)
-                            result = false;
+                            return false;
                     }
                     else
-                        result = false;
+                        return false;
                 }
                 else
-                    result = false;
+                    return false;
             }
             catch (Exception ex)
             {
                 error = ex.Message.ToString();
-                result = false;
+                return false;
             }
 
             return result;
@@ -148,33 +176,31 @@ namespace ExampleOOP.DAO
             {
                 if (row != null && row != null)
                 {
-                    if (name == _product)
+                    if (name == PRODUCT)
                     {
                         Product product = (Product) row;
-                        DeleteTableById(productTable, product, _delete);
+                        DeleteTableById(productTable, product, DELETE);
                     }
-                    else if (name == _category)
+                    else if (name == CATEGORY)
                     {
                         Category product = (Category) row;
-                        DeleteTableById(categoryTable, product, _delete);
+                        DeleteTableById(categoryTable, product, DELETE);
                     }
-                    else if (name == _accessory)
+                    else if (name == ACCESSORY)
                     {
                         Accessotion product = (Accessotion) row;
-                        DeleteTableById(accessoryTable, product, _delete);
+                        DeleteTableById(accessoryTable, product, DELETE);
                     }
                     else
-                        result = false;
+                        return false;
                 }
                 else
-                {
-                    result = false;
-                }
+                    return false;
             }
             catch (Exception ex)
             {
                 error = ex.Message.ToString();
-                result = false;
+                return false;
             }
 
             return result;
@@ -189,30 +215,28 @@ namespace ExampleOOP.DAO
             {
                 if (name != null)
                 {
-                    if (name == _product)
+                    if (name == PRODUCT)
                     {
-                        DeleteTableById(productTable, productTable, _truncate);
+                        DeleteTableById(productTable, productTable, TRUNCATE);
                     }
-                    else if (name == _category)
+                    else if (name == CATEGORY)
                     {
-                        DeleteTableById(categoryTable, categoryTable, _truncate);
+                        DeleteTableById(categoryTable, categoryTable, TRUNCATE);
                     }
-                    else if (name == _accessory)
+                    else if (name == ACCESSORY)
                     {
-                        DeleteTableById(accessoryTable, accessoryTable, _truncate);
+                        DeleteTableById(accessoryTable, accessoryTable, TRUNCATE);
                     }
                     else
-                        result = false;
+                        return false;
                 }
                 else
-                {
-                    result = false;
-                }
+                    return false;
             }
             catch (Exception ex)
             {
                 error = ex.Message.ToString();
-                result = false;
+                return false;
             }
 
             return result;
@@ -227,33 +251,31 @@ namespace ExampleOOP.DAO
             {
                 if (row != null && name != null && id.ToString() != null)
                 {
-                    if (name == _product)
+                    if (name == PRODUCT)
                     {
                         if (UpdateTableById(name, row, productTable, id) == false)
-                            result = false;
+                            return false;
                     }
-                    else if (name == _category)
+                    else if (name == CATEGORY)
                     {
                         if (UpdateTableById(name, row, productTable, id) == false)
-                            result = false;
+                            return false;
                     }
-                    else if (name == _accessory)
+                    else if (name == ACCESSORY)
                     {
                         if (UpdateTableById(name, row, productTable, id) == false)
-                            result = false;
+                            return false;
                     }
                     else
-                        result = false;
+                        return false;
                 }
                 else
-                {
-                    result = false;
-                }
+                    return false;
             }
             catch (Exception ex)
             {
                 error = ex.Message.ToString();
-                result = false;
+                return false;
             }
 
             return result;
@@ -265,17 +287,15 @@ namespace ExampleOOP.DAO
             bool check = true;
 
             if (value.ID.ToString() == null)
-            {
-                check = false;
-            }
+                return false;
 
             return check;
         }
 
         // add data into the list
-        List<object> AddList(List<object> listReturn, dynamic table)
+        List<Object> AddDataToList(List<Object> listReturn, dynamic table)
         {
-            List<object> list = new List<object>();
+            List<Object> list = new List<Object>();
 
             foreach (var itemPro in table)
             {
@@ -290,34 +310,35 @@ namespace ExampleOOP.DAO
         {
             bool check = true;
 
-            switch (name)
+            if (name == PRODUCT)
             {
-                case _product:
-                    foreach (var itemTable in table)
+                foreach (var itemTable in table)
+                {
+                    Product tmp = (Product) row;
+
+                    if (itemTable.ID == tmp.ID)
                     {
-                        Product tmp = (Product) row;
-                        if (itemTable.ID == tmp.ID)
-                        {
-                            itemTable.Name = tmp.Name;
-                            itemTable.CategoryId = tmp.CategoryId;
-                        }
+                        itemTable.Name = tmp.Name;
+                        itemTable.CategoryId = tmp.CategoryID;
+                        return true;
                     }
-                    break;
-                case _accessory:
-                case _category:
-                    foreach (var itemTable in table)
-                    {
-                        dynamic tmp = (dynamic) row;
-                        if (itemTable.ID == tmp.ID)
-                        {
-                            itemTable.Name = tmp.Name;
-                        }
-                    }
-                    break;
-                default:
-                    check = false;
-                    break;
+                }
             }
+            else if (name == CATEGORY || name == ACCESSORY)
+            {
+                foreach (var itemTable in table)
+                {
+                    dynamic tmp = (dynamic) row;
+
+                    if (itemTable.ID == tmp.ID)
+                    {
+                        itemTable.Name = tmp.Name;
+                        return true;
+                    }
+                }
+            }
+            else
+                return false;
 
             return check;
         }
@@ -327,34 +348,35 @@ namespace ExampleOOP.DAO
         {
             bool check = true;
 
-            switch (name)
+            if (name == PRODUCT)
             {
-                case _product:
-                    foreach (var itemTable in table)
+                foreach (var itemTable in table)
+                {
+                    Product tmp = (Product) row;
+
+                    if (id == tmp.ID && id == itemTable.ID)
                     {
-                        Product tmp = (Product) row;
-                        if (id == tmp.ID && id == itemTable.ID)
-                        {
-                            itemTable.Name = tmp.Name;
-                            itemTable.CategoryId = tmp.CategoryId;
-                        }
+                        itemTable.Name = tmp.Name;
+                        itemTable.CategoryId = tmp.CategoryID;
+                        return true;
                     }
-                    break;
-                case _accessory:
-                case _category:
-                    foreach (var itemTable in table)
-                    {
-                        dynamic tmp = (dynamic) row;
-                        if (id == tmp.ID && id == itemTable.ID)
-                        {
-                            itemTable.Name = tmp.Name;
-                        }
-                    }
-                    break;
-                default:
-                    check = false;
-                    break;
+                }
             }
+            else if (name == CATEGORY || name == ACCESSORY)
+            {
+                foreach (var itemTable in table)
+                {
+                    dynamic tmp = (dynamic) row;
+
+                    if (id == tmp.ID && id == itemTable.ID)
+                    {
+                        itemTable.Name = tmp.Name;
+                        return true;
+                    }
+                }
+            }
+            else
+                return false;
 
             return check;
         }
@@ -364,24 +386,36 @@ namespace ExampleOOP.DAO
         {
             bool check = true;
 
-            foreach (var itemTable in table.ToList())
+            if (switchMethod == DELETE)
             {
-                if (switchMethod == "delete")
+                foreach (var itemTable in table.ToList())
                 {
                     if (itemTable.ID == row.ID)
                     {
                         table.Remove(itemTable);
                     }
                     else
-                        check = false;
+                        return false;
                 }
-                else if (switchMethod == "truncate")
-                {
-                    table.Remove(itemTable);
-                }
-                else
-                    check = false;
             }
+            else if (switchMethod == TRUNCATE)
+            {
+                table.Clear();
+            }
+            else
+                return false;
+
+            return check;
+        }
+
+        // checks the count of the table, returns false if the count of the inserted table has not changed
+        bool CheckCountDatabase(int countTable, int countTableLater)
+        {
+            bool check = true;
+
+            if (countTableLater <= countTable)
+                return false;
+
             return check;
         }
     }

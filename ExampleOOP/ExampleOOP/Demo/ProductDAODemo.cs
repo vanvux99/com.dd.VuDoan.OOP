@@ -10,10 +10,11 @@ namespace ExampleOOP.Demo
     class ProductDAODemo
     {
         ProductDAO dao = new ProductDAO();
+        const string PRODUCT = "product";
 
         public void InsertTest(Product row)
         {
-            if (dao.Insert(row) == false)
+            if (dao.Insert(PRODUCT, row) == false)
             {
                 Console.WriteLine("Insert không thành công");
             }
@@ -25,7 +26,7 @@ namespace ExampleOOP.Demo
 
         public void UpdateTest(Product row)
         {
-            if (dao.Update(row) == false)
+            if (dao.Update(PRODUCT, row) == false)
             {
                 Console.WriteLine("Update không thành công");
             }
@@ -37,7 +38,7 @@ namespace ExampleOOP.Demo
 
         public void DeleteTest(Product row)
         {
-            if (dao.Delete(row) == false)
+            if (dao.Delete(PRODUCT, row) == false)
             {
                 Console.WriteLine("Delete không thành công");
             }
@@ -47,28 +48,22 @@ namespace ExampleOOP.Demo
             }
         }
 
-        public void FillAllTest()
+        public void FindAllTest()
         {
-            List<Product> list = dao.FillAll();
-            foreach (Product item in list)
+            foreach (Product item in dao.FindAll(PRODUCT))
             {
-                Console.WriteLine(item.ID + ", " + item.Name +", " + item.CategoryId);
+                Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryID);
             }
         }
 
-        public void FillByIdTest()
+        public void FindByIdTest(int id)
         {
-
+            Console.WriteLine(dao.FindById(id).ID + ", " + dao.FindById(id).Name);
         }
 
-        public void FillByNameTest()
+        public void FindByNameTest(string name)
         {
-
-        }
-
-        public void SearchTest()
-        {
-
+            Console.WriteLine(dao.FindByName(name).ID + ", " + dao.FindByName(name).Name);
         }
     }
 }

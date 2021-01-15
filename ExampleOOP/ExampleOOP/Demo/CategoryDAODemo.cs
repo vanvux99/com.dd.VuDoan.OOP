@@ -9,11 +9,12 @@ namespace ExampleOOP.Demo
 {
     class CategoryDAODemo
     {
-        CategoryDAO dao = new CategoryDAO();
+        BaseDAO dao = new CategoryDAO();
+        const string CATEGORY = "category";
 
         public void InsertTest(Category row)
         {
-            if (dao.Insert(row) == false)
+            if (dao.Insert(CATEGORY, row) == false)
             {
                 Console.WriteLine("Insert không thành công");
             }
@@ -25,7 +26,7 @@ namespace ExampleOOP.Demo
 
         public void UpdateTest(Category row)
         {
-            if (dao.Update(row) == false)
+            if (dao.Update(CATEGORY, row) == false)
             {
                 Console.WriteLine("Update không thành công");
             }
@@ -37,7 +38,7 @@ namespace ExampleOOP.Demo
 
         public void DeleteTest(Category row)
         {
-            if (dao.Delete(row) == false)
+            if (dao.Delete(CATEGORY, row) == false)
             {
                 Console.WriteLine("Delete không thành công");
             }
@@ -49,8 +50,7 @@ namespace ExampleOOP.Demo
 
         public void FillAllTest()
         {
-            List<Category> list = dao.FillAll();
-            foreach (Category item in list)
+            foreach (Category item in dao.FindAll(CATEGORY))
             {
                 Console.WriteLine(item.ID + ", " + item.Name);
             }

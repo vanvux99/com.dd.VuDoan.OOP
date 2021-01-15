@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExampleOOP.DAO;
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +8,54 @@ namespace ExampleOOP
 {
     public abstract class BaseDAO
     {
-        public abstract bool Insert(BaseRow row);
-        public abstract bool Update(BaseRow row);
-        public abstract bool Delete(BaseRow row);
+        Database database = new Database();
 
-        public List<BaseRow> FillAll();
+        public BaseDAO()
+        {
+
+        }
+
+        public bool Insert(string nameObject, BaseRow row)
+        {
+            bool result = true;
+
+            if (database.InsertTable(nameObject, row) == false)
+                return false;
+
+            return result;
+        }
+
+        public bool Update(string nameObject, BaseRow row)
+        {
+            bool result = true;
+
+            if (database.UpdateTable(nameObject, row) == false)
+                return false;
+
+            return result;
+        }
+
+        public bool Delete(string nameObject, BaseRow row)
+        {
+            bool result = true;
+
+            if (database.DeleteTable(nameObject, row) == false)
+                return false;
+
+            return result;
+        }
+
+
+        public List<Object> FindAll(string nameObject)
+        {
+            List<Object> list = new List<Object>();
+
+            foreach (Object item in database.SelectTable(nameObject))
+            {
+                list.Add(item);
+            }
+
+            return list;
+        }
     }
 }

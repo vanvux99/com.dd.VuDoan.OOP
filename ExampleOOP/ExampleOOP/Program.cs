@@ -10,20 +10,56 @@ namespace ExampleOOP
 {
     class Program
     {
+        static DatabaseDemo demo = new DatabaseDemo();
+        static Database database = new Database();
+        static Random rnd = new Random();
+        static ProductDAODemo productDAODemo = new ProductDAODemo();
+
         static void Main(string[] args)
-        {/*
-            DatabaseDemo demo = new DatabaseDemo();
-            Database database = new Database();
-            Random rnd = new Random();
+        {
+            TestInsert();
+
+            foreach (var item in Database.productTable)
+            {
+                Console.WriteLine(item.ID +", " + item.Name +", " +item.CategoryID);
+            }
+
+        }
+
+        static void TestInsert()
+        {
+            Product product = new Product(1, "uchiha", 1);
+            productDAODemo.InsertTest(product);
+        }
 
 
 
-            string[] names = { "Rufus", "Bear", "Dakota", "Fido",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        void CMT()
+        {
+            /*string[] names = { "Rufus", "Bear", "Dakota", "Fido",
                           "Vanya", "Samuel", "Koani", "Volodya",
                           "Prince", "Yiska" };
             int nameIndex = rnd.Next(1, names.Length);
 
-            *//*string[] category =
+            string[] category =
             {
                 "caterogy1", "caterogy2", "caterogy3", "caterogy4"
             };
@@ -38,9 +74,9 @@ namespace ExampleOOP
 
             for (int i = 0; i < 1; i++)
             {
-                demo.InitDatabase("product", new Product((i + 1), names[nameIndex], (i + 1)));*//*
+                demo.InitDatabase("product", new Product((i + 1), names[nameIndex], (i + 1)));
                 demo.InitDatabase("category", new Category((i + 1), names[nameIndex]));
-                demo.InitDatabase("accessory", new Accessotion((i + 1), names[nameIndex]));*//*
+                demo.InitDatabase("accessory", new Accessotion((i + 1), names[nameIndex]));
 
             }
 
@@ -60,7 +96,7 @@ namespace ExampleOOP
             {
                 Console.WriteLine(ex.Message);
                 throw;
-            }*/
+            }
 
 
             // test product
@@ -73,16 +109,10 @@ namespace ExampleOOP
             Category category = new Category(032418, "uchiha");
 
             Console.WriteLine(category.ID);
-            Console.WriteLine(category.Name);
-
+            Console.WriteLine(category.Name);*/
         }
     }
 }
-
-/** ngày mai hỏi chú
- * 
- * không được chấm gọi thẳng tới method thì phải làm cách nào
- */
 
 
 

@@ -14,12 +14,14 @@ namespace ExampleOOP.Demo
 
         public void CreateProductTest()
         {
-            //chưa viết
+            Product product = new Product(1, "testProduct", 1);
         }
 
         public void PrintProduct(Product product)
         {
-            // câu 2, chưa viết gì cả
+            Console.WriteLine(product.ID);
+            Console.WriteLine(product.Name);
+            Console.WriteLine(product.CategoryID);
         }
     }
 }

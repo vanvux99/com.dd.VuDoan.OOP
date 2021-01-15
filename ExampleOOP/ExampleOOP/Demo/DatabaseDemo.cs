@@ -33,7 +33,7 @@ namespace ExampleOOP.Demo
                 case "product":
                     foreach (Product item in list)
                     {
-                        Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryId);
+                        Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryID);
                     }
                     break;
 

@@ -10,10 +10,11 @@ namespace ExampleOOP.Demo
     class AccessoryDAODemo
     {
         AccessoryDAO dao = new AccessoryDAO();
+        const string ACCESSORY = "accessory";
 
         public void InsertTest(Accessotion row)
         {
-            if (dao.Insert(row) == false)
+            if (dao.Insert(ACCESSORY, row) == false)
             {
                 Console.WriteLine("Insert không thành công");
             }
@@ -25,7 +26,7 @@ namespace ExampleOOP.Demo
 
         public void UpdateTest(Accessotion row)
         {
-            if (dao.Update(row) == false)
+            if (dao.Update(ACCESSORY, row) == false)
             {
                 Console.WriteLine("Update không thành công");
             }
@@ -37,7 +38,7 @@ namespace ExampleOOP.Demo
 
         public void DeleteTest(Accessotion row)
         {
-            if (dao.Delete(row) == false)
+            if (dao.Delete(ACCESSORY, row) == false)
             {
                 Console.WriteLine("Delete không thành công");
             }
@@ -47,28 +48,22 @@ namespace ExampleOOP.Demo
             }
         }
 
-        public void FillAllTest()
+        public void FindAllTest()
         {
-            List<Accessotion> list = dao.FillAll();
-            foreach (Accessotion item in list)
+            foreach (Accessotion item in dao.FindAll(ACCESSORY))
             {
                 Console.WriteLine(item.ID + ", " + item.Name);
             }
         }
 
-        public void FillByIdTest()
+        public void FindByIdTest(int id)
         {
-
+            Console.WriteLine(dao.FindById(id).ID + ", " + dao.FindById(id).Name);
         }
 
-        public void FillByNameTest()
+        public void FindByNameTest(string name)
         {
-
-        }
-
-        public void SearchTest()
-        {
-
+            Console.WriteLine(dao.FindByName(name).ID + ", " + dao.FindByName(name).Name);
         }
     }
 }

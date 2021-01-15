@@ -6,19 +6,14 @@ namespace ExampleOOP.Entity
 {
     class Category : BaseRow
     {
-        public override string Name { get; set; }
-
-        public override int ID { get; set; }
-
-        public Category()
+        public Category() : base()
         {
 
         }
 
-        public Category(int _id, string _name)
+        public Category(int id, string name) : base(id, name)
         {
-            ID = _id;
-            Name = _name;
+
         }
     }
 }

@@ -6,21 +6,27 @@ namespace ExampleOOP
 {
     public abstract class BaseRow
     {
-        /**
-         * 
-            Các lớp trong entity đều có function giống nhau là gì? 
-            Hãy gom  function này vào lớp asbtract là BaseRow. 
-            Các lớp entity phải thừa kế từ lớp BaseRow.
-            Hãy suy ra lợi điểm của class abstract trong trường hợp này là gì.
-            Đọc lại lý thuyết class abstract
-         * 
-         */
+        public string Name { get; set; }
 
-        //public abstract Object(int id, string name, int sencondID);
-        public abstract string Name { get; set; }
+        public int ID { get; set; }
+        public int CategoryID { get; set; }
 
-        public abstract int ID { get; set; }
+        public BaseRow()
+        {
 
+        }
 
+        public BaseRow(int id, string name)
+        {
+            this.ID = id;
+            this.Name = name;
+        }
+
+        public BaseRow(int id, string name, int cateid)
+        {
+            this.ID = id;
+            this.Name = name;
+            this.CategoryID = cateid;
+        }
     }
 }

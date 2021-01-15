@@ -6,16 +6,17 @@ using ExampleOOP.Entity;
 
 namespace ExampleOOP.Demo
 {
-    class CategoryDemo
+    class CategoryDemo : Category
     {
         public void CreateCategoryTest()
         {
-            // chưa viết
+            Category category = new Category(1, "testName");
         }
 
-        public void PrintCategory(Category product)
+        public void PrintCategory(Category category)
         {
-            // câu 3, chưa viết gì cả
+            Console.WriteLine(category.ID);
+            Console.WriteLine(category.Name);
         }
     }
 }

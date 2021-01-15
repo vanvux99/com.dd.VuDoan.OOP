@@ -39,15 +39,7 @@ namespace ExampleOOP.DAO
                         countTable = productTable.Count;
                         Product parseProduct = (Product) row;
 
-                        if (CheckId(parseProduct) == true)
-                        {
-                            productTable.Add(parseProduct);
-                            countTableLaterInsert = productTable.Count;
-
-                            if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
-                                return false;
-                        }   
-                        else
+                        if (InsertData(countTable, countTableLaterInsert, parseProduct) == false)
                             return false;
                     }
                     else if (name == CATEGORY)
@@ -55,15 +47,7 @@ namespace ExampleOOP.DAO
                         countTable = categoryTable.Count;
                         Category parseCategory = (Category) row;
 
-                        if (CheckId(parseCategory) == true)
-                        {
-                            categoryTable.Add(parseCategory);
-                            countTableLaterInsert = categoryTable.Count;
-
-                            if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
-                                return false;
-                        }     
-                        else
+                        if (InsertData(countTable, countTableLaterInsert, parseCategory) == false)
                             return false;
                     }
                     else if (name == ACCESSORY)
@@ -71,15 +55,7 @@ namespace ExampleOOP.DAO
                         countTable = accessoryTable.Count;
                         Accessotion parseAsscessory = (Accessotion) row;
 
-                        if (CheckId(parseAsscessory) == true)
-                        {
-                            accessoryTable.Add(parseAsscessory);
-                            countTableLaterInsert = accessoryTable.Count;
-
-                            if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
-                                return false;
-                        }    
-                        else
+                        if (InsertData(countTable, countTableLaterInsert, parseAsscessory) == false)
                             return false;
                     }
                     else
@@ -414,6 +390,26 @@ namespace ExampleOOP.DAO
             bool check = true;
 
             if (countTableLater <= countTable)
+                return false;
+
+            return check;
+        }
+
+
+        // insert data into database
+        bool InsertData(int countTable, int countTableLaterInsert, dynamic table)
+        {
+            bool check = true;
+
+            if (CheckId(table) == true)
+            {
+                productTable.Add(table);
+                countTableLaterInsert = productTable.Count;
+
+                if (CheckCountDatabase(countTable, countTableLaterInsert) == false)
+                    return false;
+            }
+            else
                 return false;
 
             return check;

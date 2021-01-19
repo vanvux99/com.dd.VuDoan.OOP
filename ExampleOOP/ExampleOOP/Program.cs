@@ -11,7 +11,6 @@ namespace ExampleOOP
     class Program
     {
         static DatabaseDemo demo = new DatabaseDemo();
-        static Database database = new Database();
         static Random rnd = new Random();
         static ProductDAODemo productDAODemo = new ProductDAODemo();
 
@@ -19,10 +18,7 @@ namespace ExampleOOP
         {
             TestInsert();
 
-            foreach (var item in Database.productTable)
-            {
-                Console.WriteLine(item.ID +", " + item.Name +", " +item.CategoryID);
-            }
+            //demo.SelectTableTest();
 
         }
 

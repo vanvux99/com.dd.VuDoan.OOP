@@ -10,18 +10,32 @@ namespace ExampleOOP.DAO
 {
     class Database
     {
-        public static List<Product> productTable = new List<Product>();
-        public static List<Category> categoryTable = new List<Category>();
-        public static List<Accessotion> accessoryTable = new List<Accessotion>();
-        public Database instants;
+        private List<Product> productTable = new List<Product>();
+        private List<Category> categoryTable = new List<Category>();
+        private List<Accessotion> accessoryTable = new List<Accessotion>();
+        private static Database instants = null;
+        private string error;
+        private const string CATEGORY = "category";
+        private const string PRODUCT = "product";
+        private const string ACCESSORY = "accessory";
+        private const string DELETE = "delete";
+        private const string TRUNCATE = "truncate";
 
-        string error;
-        const string CATEGORY = "category";
-        const string PRODUCT = "product";
-        const string ACCESSORY = "accessory";
-        const string DELETE = "delete";
-        const string TRUNCATE = "truncate";
-        
+        public static Database Instance
+        {
+            get
+            {
+                if (instants == null)
+                    instants = new Database();
+                return instants;
+            }
+            set { instants = value; }
+        }
+
+        private Database()
+        {
+
+        }
 
         // Add data to the database
         public bool InsertTable(string name, BaseRow row)

@@ -10,11 +10,9 @@ namespace ExampleOOP.Demo
 {
     class DatabaseDemo
     {
-        Database database = new Database();
-
         public void InsertTableTest(string name, dynamic row)
         {
-            if (database.InsertTable(name, row) == false)
+            if (Database.Instance.InsertTable(name, row) == false)
             {
                 Console.WriteLine("Insert không thành công");
             }
@@ -26,7 +24,7 @@ namespace ExampleOOP.Demo
 
         public void SelectTableTest(string name)
         {
-            List<object> list = database.SelectTable(name);
+            List<object> list = Database.Instance.SelectTable(name);
 
             switch (name)
             {
@@ -53,7 +51,7 @@ namespace ExampleOOP.Demo
 
         public void UpdateTableTest(string name, BaseRow row)
         {
-            if (database.UpdateTable(name, row) == false)
+            if (Database.Instance.UpdateTable(name, row) == false)
             {
                 Console.WriteLine("Update không thành công");
             }
@@ -65,7 +63,7 @@ namespace ExampleOOP.Demo
 
         public void UpdateTableTest(int id, string name, BaseRow row)
         {
-            if (database.UpdateTable(id, name, row) == false)
+            if (Database.Instance.UpdateTable(id, name, row) == false)
             {
                 Console.WriteLine("Update không thành công");
             }
@@ -77,7 +75,7 @@ namespace ExampleOOP.Demo
 
         public void DeleteTableTest(string name, dynamic row)
         {
-            if (database.DeleteTable(name, row) == false)
+            if (Database.Instance.DeleteTable(name, row) == false)
             {
                 Console.WriteLine("Delete không thành công");
             }
@@ -89,7 +87,7 @@ namespace ExampleOOP.Demo
 
         public void TruncateTableTest(string name, dynamic row)
         {
-            if (database.TruncateTable(name) == false)
+            if (Database.Instance.TruncateTable(name) == false)
             {
                 Console.WriteLine("Insert không thành công");
             }

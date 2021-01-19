@@ -5,6 +5,7 @@ using System.Text;
 using ExampleOOP.DAO;
 using ExampleOOP.Entity;
 
+
 namespace ExampleOOP.Demo
 {
     class ProductDAODemo
@@ -58,12 +59,12 @@ namespace ExampleOOP.Demo
 
         public void FindByIdTest(int id)
         {
-            Console.WriteLine(dao.FindById(id).ID + ", " + dao.FindById(id).Name);
+            Console.WriteLine(dao.FindById(id, PRODUCT).ID + ", " + dao.FindById(id, PRODUCT).Name);
         }
 
         public void FindByNameTest(string name)
         {
-            Console.WriteLine(dao.FindByName(name).ID + ", " + dao.FindByName(name).Name);
+            Console.WriteLine(dao.FindByName(name, PRODUCT).ID + ", " + dao.FindByName(name, PRODUCT).Name);
         }
     }
 }

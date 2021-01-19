@@ -7,9 +7,9 @@ using ExampleOOP.Entity;
 
 namespace ExampleOOP.Demo
 {
-    class AccessoryDAODemo
+    class AccessoryDAODemo 
     {
-        AccessoryDAO dao = new AccessoryDAO();
+        BaseDAO dao = new AccessoryDAO();
         const string ACCESSORY = "accessory";
 
         public void InsertTest(Accessotion row)
@@ -58,12 +58,12 @@ namespace ExampleOOP.Demo
 
         public void FindByIdTest(int id)
         {
-            Console.WriteLine(dao.FindById(id).ID + ", " + dao.FindById(id).Name);
+            Console.WriteLine(dao.FindById(id, ACCESSORY).ID + ", " + dao.FindById(id, ACCESSORY).Name);
         }
 
         public void FindByNameTest(string name)
         {
-            Console.WriteLine(dao.FindByName(name).ID + ", " + dao.FindByName(name).Name);
+            Console.WriteLine(dao.FindByName(name, ACCESSORY).ID + ", " + dao.FindByName(name, ACCESSORY).Name);
         }
     }
 }

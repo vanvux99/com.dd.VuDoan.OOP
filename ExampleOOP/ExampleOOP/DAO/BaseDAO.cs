@@ -8,9 +8,11 @@ namespace ExampleOOP
 {
     public abstract class BaseDAO
     {
-        Database database = new Database();
+        public const string CATEGORY = "category";
+        public const string PRODUCT = "product";
+        public const string ACCESSORY = "accessory";
 
-        public BaseDAO()
+        protected BaseDAO()
         {
 
         }
@@ -19,7 +21,7 @@ namespace ExampleOOP
         {
             bool result = true;
 
-            if (database.InsertTable(nameObject, row) == false)
+            if (Database.Instance.InsertTable(nameObject, row) == false)
                 return false;
 
             return result;
@@ -29,7 +31,7 @@ namespace ExampleOOP
         {
             bool result = true;
 
-            if (database.UpdateTable(nameObject, row) == false)
+            if (Database.Instance.UpdateTable(nameObject, row) == false)
                 return false;
 
             return result;
@@ -39,7 +41,7 @@ namespace ExampleOOP
         {
             bool result = true;
 
-            if (database.DeleteTable(nameObject, row) == false)
+            if (Database.Instance.DeleteTable(nameObject, row) == false)
                 return false;
 
             return result;
@@ -50,12 +52,42 @@ namespace ExampleOOP
         {
             List<Object> list = new List<Object>();
 
-            foreach (Object item in database.SelectTable(nameObject))
+            foreach (Object item in Database.Instance.SelectTable(nameObject))
             {
                 list.Add(item);
             }
 
             return list;
+        }
+
+        public BaseRow FindByName(string name, string nameObject)
+        {
+            BaseRow result = null;
+
+            foreach (BaseRow item in Database.Instance.SelectTable(nameObject))
+            {
+                if (item.Name == name)
+                {
+                    result = item;
+                }
+            }
+
+            return result;
+        }
+
+        public BaseRow FindById(int id, string nameObject)
+        {
+            BaseRow result = null;
+
+            foreach (BaseRow item in Database.Instance.SelectTable(nameObject))
+            {
+                if (item.ID == id)
+                {
+                    result = item;
+                }
+            }
+
+            return result;
         }
     }
 }

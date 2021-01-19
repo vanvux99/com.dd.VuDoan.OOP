@@ -6,23 +6,47 @@ namespace ExampleOOP
 {
     public abstract class BaseRow
     {
-        public string Name { get; set; }
+        private string name;
+        private int id;
+        private int categoryID;
+
+        public int CategoryID
+        {
+            get { return categoryID; }
+            set { categoryID = value; }
+        }
+
+
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        /*public string Name { get; set; }
 
         public int ID { get; set; }
         public int CategoryID { get; set; }
-
-        public BaseRow()
+*/
+        protected BaseRow()
         {
 
         }
 
-        public BaseRow(int id, string name)
+        protected BaseRow(int id, string name)
         {
             this.ID = id;
             this.Name = name;
         }
 
-        public BaseRow(int id, string name, int cateid)
+        protected BaseRow(int id, string name, int cateid)
         {
             this.ID = id;
             this.Name = name;

@@ -53,18 +53,18 @@ namespace ExampleOOP.Demo
         {
             foreach (Product item in dao.FindAll(PRODUCT))
             {
-                Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryID);
+                Console.WriteLine(item.GetID() + ", " + item.GetName() + ", " + item.GetCategoryID());
             }
         }
 
         public void FindByIdTest(int id)
         {
-            Console.WriteLine(dao.FindById(id, PRODUCT).ID + ", " + dao.FindById(id, PRODUCT).Name);
+            Console.WriteLine(dao.FindById(id, PRODUCT).GetID() + ", " + dao.FindById(id, PRODUCT).GetName());
         }
 
         public void FindByNameTest(string name)
         {
-            Console.WriteLine(dao.FindByName(name, PRODUCT).ID + ", " + dao.FindByName(name, PRODUCT).Name);
+            Console.WriteLine(dao.FindByName(name, PRODUCT).GetID() + ", " + dao.FindByName(name, PRODUCT).GetName());
         }
     }
 }

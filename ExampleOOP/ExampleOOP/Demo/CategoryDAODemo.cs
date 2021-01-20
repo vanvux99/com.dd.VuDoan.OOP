@@ -52,7 +52,7 @@ namespace ExampleOOP.Demo
         {
             foreach (Category item in dao.FindAll(CATEGORY))
             {
-                Console.WriteLine(item.ID + ", " + item.Name);
+                Console.WriteLine(item.GetID() + ", " + item.GetName());
             }
         }
     }

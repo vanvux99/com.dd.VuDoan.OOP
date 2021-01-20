@@ -15,8 +15,8 @@ namespace ExampleOOP.Demo
 
         public void PrintAccessory(Accessotion accessotion)
         {
-            Console.WriteLine(accessotion.ID);
-            Console.WriteLine(accessotion.Name);
+            Console.WriteLine(accessotion.GetID());
+            Console.WriteLine(accessotion.GetName());
         }
     }
 }

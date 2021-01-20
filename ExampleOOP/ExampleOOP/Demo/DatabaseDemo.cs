@@ -24,14 +24,14 @@ namespace ExampleOOP.Demo
 
         public void SelectTableTest(string name)
         {
-            List<object> list = Database.Instance.SelectTable(name);
+            List<BaseRow> list = Database.Instance.SelectTable(name);
 
             switch (name)
             {
                 case "product":
                     foreach (Product item in list)
                     {
-                        Console.WriteLine(item.ID + ", " + item.Name + ", " + item.CategoryID);
+                        Console.WriteLine(item.GetID() + ", " + item.GetName() + ", " + item.GetCategoryID());
                     }
                     break;
 

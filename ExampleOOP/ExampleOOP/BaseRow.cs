@@ -10,24 +10,34 @@ namespace ExampleOOP
         private int id;
         private int categoryID;
 
-        public int CategoryID
+        public void SetID(int id)
         {
-            get { return categoryID; }
-            set { categoryID = value; }
+            this.id = id;
         }
 
-
-        public int ID
+        public int GetID()
         {
-            get { return id; }
-            set { id = value; }
+            return id;
         }
 
-
-        public string Name
+        public void SetName(string name)
         {
-            get { return name; }
-            set { name = value; }
+            this.name = name;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public void SetCategoryID(int cateid)
+        {
+            this.categoryID = id;
+        }
+
+        public int GetCategoryID()
+        {
+            return categoryID;
         }
 
         protected BaseRow()
@@ -37,15 +47,15 @@ namespace ExampleOOP
 
         protected BaseRow(int id, string name)
         {
-            this.ID = id;
-            this.Name = name;
+            this.id = id;
+            this.name = name;
         }
 
         protected BaseRow(int id, string name, int cateid)
         {
-            this.ID = id;
-            this.Name = name;
-            this.CategoryID = cateid;
+            this.id = id;
+            this.name = name;
+            this.categoryID = cateid;
         }
     }
 }

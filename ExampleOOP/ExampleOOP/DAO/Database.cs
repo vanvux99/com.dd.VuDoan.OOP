@@ -320,10 +320,10 @@ namespace ExampleOOP.DAO
                 {
                     Product tmp = (Product) row;
 
-                    if (itemTable.ID == tmp.ID)
+                    if (itemTable.ID == tmp.GetID())
                     {
-                        itemTable.Name = tmp.Name;
-                        itemTable.CategoryId = tmp.CategoryID;
+                        itemTable.Name = tmp.GetName();
+                        itemTable.CategoryId = tmp.GetCategoryID();
                         return true;
                     }
                 }
@@ -365,10 +365,10 @@ namespace ExampleOOP.DAO
                 {
                     Product tmp = (Product) row;
 
-                    if (id == tmp.ID && id == itemTable.ID)
+                    if (id == tmp.GetID() && id == itemTable.ID)
                     {
-                        itemTable.Name = tmp.Name;
-                        itemTable.CategoryId = tmp.CategoryID;
+                        itemTable.Name = tmp.GetName();
+                        itemTable.CategoryId = tmp.GetCategoryID();
                         return true;
                     }
                 }

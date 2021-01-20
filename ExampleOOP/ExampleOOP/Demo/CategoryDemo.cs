@@ -15,8 +15,8 @@ namespace ExampleOOP.Demo
 
         public void PrintCategory(Category category)
         {
-            Console.WriteLine(category.ID);
-            Console.WriteLine(category.Name);
+            Console.WriteLine(category.GetID());
+            Console.WriteLine(category.GetName());
         }
     }
 }

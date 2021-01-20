@@ -57,7 +57,7 @@ namespace ExampleOOP
         {
             foreach (BaseRow item in Database.Instance.SelectTable(nameObject))
             {
-                if (item.ID == id)
+                if (item.GetID() == id)
                 {
                     return item;
                 }

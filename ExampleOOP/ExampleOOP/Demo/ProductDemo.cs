@@ -9,8 +9,6 @@ namespace ExampleOOP.Demo
     class ProductDemo : Product
     {
         Product products = new Product();
-        /*- createProductTest()
-        - printProduct(product)*/
 
         public void CreateProductTest()
         {
@@ -19,9 +17,9 @@ namespace ExampleOOP.Demo
 
         public void PrintProduct(Product product)
         {
-            Console.WriteLine(product.ID);
-            Console.WriteLine(product.Name);
-            Console.WriteLine(product.CategoryID);
+            Console.WriteLine(product.GetID());
+            Console.WriteLine(product.GetName());
+            Console.WriteLine(product.GetCategoryID());
         }
     }
 }

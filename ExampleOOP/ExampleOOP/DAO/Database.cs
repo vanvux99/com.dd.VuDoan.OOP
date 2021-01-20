@@ -37,10 +37,14 @@ namespace ExampleOOP.DAO
 
         }
 
-        // Add data to the database
+        /// <summary>
+        /// insert data into the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="row"></param>
+        /// <returns> true or false </returns>
         public bool InsertTable(string name, BaseRow row)
         {
-            bool result = true;
             int countTable = 0;
             int countTableLaterInsert = 0;
 
@@ -53,24 +57,21 @@ namespace ExampleOOP.DAO
                         countTable = productTable.Count;
                         Product parseProduct = (Product) row;
 
-                        if (InsertData(countTable, countTableLaterInsert, parseProduct) == false)
-                            return false;
+                        return InsertData(countTable, countTableLaterInsert, parseProduct);
                     }
                     else if (name == CATEGORY)
                     {
                         countTable = categoryTable.Count;
                         Category parseCategory = (Category) row;
 
-                        if (InsertData(countTable, countTableLaterInsert, parseCategory) == false)
-                            return false;
+                        return InsertData(countTable, countTableLaterInsert, parseCategory);
                     }
                     else if (name == ACCESSORY)
                     {
                         countTable = accessoryTable.Count;
                         Accessotion parseAsscessory = (Accessotion) row;
 
-                        if (InsertData(countTable, countTableLaterInsert, parseAsscessory) == false)
-                            return false;
+                        return InsertData(countTable, countTableLaterInsert, parseAsscessory);
                     }
                     else
                         return false;
@@ -83,30 +84,30 @@ namespace ExampleOOP.DAO
                 error = ex.Message.ToString();
                 return false;
             }
-
-            return result;
         }
 
-        // get the data out of the database
-        public List<object> SelectTable(string name)
+        /// <summary>
+        /// return the list data of database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns> list data </returns>
+        public List<BaseRow> SelectTable(string name)
         {
-            List<object> list = new List<object>();
-
             try
             {
                 if (name != null)
                 {
                     if (name == PRODUCT)
                     {
-                        list = AddDataToList(list, productTable);
+                        return AddDataToList(productTable);
                     }
                     else if (name == CATEGORY)
                     {
-                        list = AddDataToList(list, categoryTable);
+                        return AddDataToList(categoryTable);
                     }
                     else if (name == ACCESSORY)
                     {
-                        list = AddDataToList(list, accessoryTable);
+                        return AddDataToList(accessoryTable);
                     }
                 }
             }
@@ -114,33 +115,32 @@ namespace ExampleOOP.DAO
             {
                 error = ex.Message.ToString();
             }
-
-            return list;
+            return null;
         }
 
-        // update data into the database
+        /// <summary>
+        /// update data into the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="row"></param>
+        /// <returns> boolean </returns>
         public bool UpdateTable(string name, BaseRow row)
         {
-            bool result = true;
-
             try
             {
                 if (row != null && name != null)
                 {
                     if (name == PRODUCT)
                     {
-                        if (UpdateTableAuto(name, row, productTable) == false)
-                            return false;
+                        return UpdateTableAuto(name, row, productTable);
                     }
                     else if (name == CATEGORY)
                     {
-                        if (UpdateTableAuto(name, row, categoryTable) == false)
-                            return false;
+                        return UpdateTableAuto(name, row, categoryTable);
                     }
                     else if (name == ACCESSORY)
                     {
-                        if (UpdateTableAuto(name, row, accessoryTable) == false)
-                            return false;
+                        return UpdateTableAuto(name, row, accessoryTable);
                     }
                     else
                         return false;
@@ -153,15 +153,16 @@ namespace ExampleOOP.DAO
                 error = ex.Message.ToString();
                 return false;
             }
-
-            return result;
         }
 
-        // delete data 
+        /// <summary>
+        /// delete data into the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="row"></param>
+        /// <returns> variable boolean </returns>
         public bool DeleteTable(string name, BaseRow row)
         {
-            bool result = true;
-
             try
             {
                 if (row != null && row != null)
@@ -169,17 +170,17 @@ namespace ExampleOOP.DAO
                     if (name == PRODUCT)
                     {
                         Product product = (Product) row;
-                        DeleteTableById(productTable, product, DELETE);
+                        return DeleteTableById(productTable, product, DELETE);
                     }
                     else if (name == CATEGORY)
                     {
                         Category product = (Category) row;
-                        DeleteTableById(categoryTable, product, DELETE);
+                        return DeleteTableById(categoryTable, product, DELETE);
                     }
                     else if (name == ACCESSORY)
                     {
                         Accessotion product = (Accessotion) row;
-                        DeleteTableById(accessoryTable, product, DELETE);
+                        return DeleteTableById(accessoryTable, product, DELETE);
                     }
                     else
                         return false;
@@ -192,30 +193,30 @@ namespace ExampleOOP.DAO
                 error = ex.Message.ToString();
                 return false;
             }
-
-            return result;
         }
 
-        // delete all data 
+        /// <summary>
+        /// clean data in the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns> var boolean </returns>
         public bool TruncateTable(string name)
         {
-            bool result = true;
-
             try
             {
                 if (name != null)
                 {
                     if (name == PRODUCT)
                     {
-                        DeleteTableById(productTable, productTable, TRUNCATE);
+                        return DeleteTableById(productTable, productTable, TRUNCATE);
                     }
                     else if (name == CATEGORY)
                     {
-                        DeleteTableById(categoryTable, categoryTable, TRUNCATE);
+                        return DeleteTableById(categoryTable, categoryTable, TRUNCATE);
                     }
                     else if (name == ACCESSORY)
                     {
-                        DeleteTableById(accessoryTable, accessoryTable, TRUNCATE);
+                        return DeleteTableById(accessoryTable, accessoryTable, TRUNCATE);
                     }
                     else
                         return false;
@@ -228,33 +229,32 @@ namespace ExampleOOP.DAO
                 error = ex.Message.ToString();
                 return false;
             }
-
-            return result;
         }
 
-        // update database by id
+        /// <summary>
+        /// update database by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="row"></param>
+        /// <returns></returns>
         public bool UpdateTable(int id, string name, BaseRow row)
         {
-            bool result = true;
-
             try
             {
                 if (row != null && name != null && id.ToString() != null)
                 {
                     if (name == PRODUCT)
                     {
-                        if (UpdateTableById(name, row, productTable, id) == false)
-                            return false;
+                        return UpdateTableById(name, row, productTable, id);
                     }
                     else if (name == CATEGORY)
                     {
-                        if (UpdateTableById(name, row, productTable, id) == false)
-                            return false;
+                        return UpdateTableById(name, row, productTable, id);
                     }
                     else if (name == ACCESSORY)
                     {
-                        if (UpdateTableById(name, row, productTable, id) == false)
-                            return false;
+                        return UpdateTableById(name, row, productTable, id);
                     }
                     else
                         return false;
@@ -267,11 +267,15 @@ namespace ExampleOOP.DAO
                 error = ex.Message.ToString();
                 return false;
             }
-
-            return result;
         }
 
-        // check id input
+        #region SubMethod 
+
+        /// <summary>
+        /// check id input
+        /// </summary>
+        /// <param name="value"> id</param>
+        /// <returns></returns>
         bool CheckId(dynamic value)
         {
             bool check = true;
@@ -282,20 +286,30 @@ namespace ExampleOOP.DAO
             return check;
         }
 
-        // add data into the list
-        List<Object> AddDataToList(List<Object> listReturn, dynamic table)
+        /// <summary>
+        /// add data into the list
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        List<BaseRow> AddDataToList(dynamic table)
         {
-            List<Object> list = new List<Object>();
+            List<BaseRow> list = new List<BaseRow>();
 
             foreach (var itemPro in table)
             {
-                listReturn.Add(itemPro);
+                list.Add(itemPro);
             }
 
             return list;
         }
 
-        // update data
+        /// <summary>
+        /// update data
+        /// </summary>
+        /// <param name="name"> object of baserow</param>
+        /// <param name="row"> data input</param>
+        /// <param name="table"> database</param>
+        /// <returns></returns>
         bool UpdateTableAuto(string name, BaseRow row, dynamic table)
         {
             bool check = true;
@@ -333,7 +347,14 @@ namespace ExampleOOP.DAO
             return check;
         }
 
-        // update data by id
+        /// <summary>
+        /// update data by id
+        /// </summary>
+        /// <param name="name"> object of baserow</param>
+        /// <param name="row"> data input</param>
+        /// <param name="table"> database</param>
+        /// <param name="id"> id input</param>
+        /// <returns></returns>
         bool UpdateTableById(string name, BaseRow row, dynamic table, int id)
         {
             bool check = true;
@@ -371,7 +392,13 @@ namespace ExampleOOP.DAO
             return check;
         }
 
-        // delete data, use with method Delete and method Truncate
+        /// <summary>
+        /// delete data, use with method Delete and method Truncate
+        /// </summary>
+        /// <param name="table"> of BaseRow</param>
+        /// <param name="row"> database </param>
+        /// <param name="switchMethod"> delete or truncate </param>
+        /// <returns></returns>
         bool DeleteTableById(dynamic table, dynamic row, string switchMethod)
         {
             bool check = true;
@@ -398,7 +425,12 @@ namespace ExampleOOP.DAO
             return check;
         }
 
-        // checks the count of the table, returns false if the count of the inserted table has not changed
+        /// <summary>
+        /// checks the count of the table, returns false if the count of the inserted table has not changed
+        /// </summary>
+        /// <param name="countTable"> count of row of database</param>
+        /// <param name="countTableLater"> count of row of database later compare </param>
+        /// <returns></returns>
         bool CheckCountDatabase(int countTable, int countTableLater)
         {
             bool check = true;
@@ -410,7 +442,13 @@ namespace ExampleOOP.DAO
         }
 
 
-        // insert data into database
+        /// <summary>
+        /// insert data into database
+        /// </summary>
+        /// <param name="countTable"> count of row of database</param>
+        /// <param name="countTableLaterInsert"> count of row of database later compare</param>
+        /// <param name="table"> database</param>
+        /// <returns></returns>
         bool InsertData(int countTable, int countTableLaterInsert, dynamic table)
         {
             bool check = true;
@@ -428,5 +466,6 @@ namespace ExampleOOP.DAO
 
             return check;
         }
+        #endregion
     }
 }

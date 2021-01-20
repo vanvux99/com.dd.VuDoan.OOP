@@ -19,75 +19,51 @@ namespace ExampleOOP
 
         public bool Insert(string nameObject, BaseRow row)
         {
-            bool result = true;
-
-            if (Database.Instance.InsertTable(nameObject, row) == false)
-                return false;
-
-            return result;
+            return Database.Instance.InsertTable(nameObject, row);
         }
 
         public bool Update(string nameObject, BaseRow row)
         {
-            bool result = true;
-
-            if (Database.Instance.UpdateTable(nameObject, row) == false)
-                return false;
-
-            return result;
+            return Database.Instance.UpdateTable(nameObject, row);
         }
 
         public bool Delete(string nameObject, BaseRow row)
         {
-            bool result = true;
-
-            if (Database.Instance.DeleteTable(nameObject, row) == false)
-                return false;
-
-            return result;
+            return Database.Instance.DeleteTable(nameObject, row);
         }
 
-
-        public List<Object> FindAll(string nameObject)
+        /// <summary>
+        /// select data in the BaseRow
+        /// </summary>
+        /// <param name="nameObject"></param>
+        /// <returns> Data in select table</returns>
+        public List<BaseRow> FindAll(string nameObject)
         {
-            List<Object> list = new List<Object>();
-
-            foreach (Object item in Database.Instance.SelectTable(nameObject))
-            {
-                list.Add(item);
-            }
-
-            return list;
+            return Database.Instance.SelectTable(nameObject);
         }
 
+        /// <summary> Find data by name
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="nameObject"> </param>
+        /// <returns> object in  the baseRow, data in select table </returns>
         public BaseRow FindByName(string name, string nameObject)
         {
-            BaseRow result = null;
-
-            foreach (BaseRow item in Database.Instance.SelectTable(nameObject))
-            {
-                if (item.Name == name)
-                {
-                    result = item;
-                }
-            }
-
-            return result;
+            return null;
         }
 
         public BaseRow FindById(int id, string nameObject)
         {
-            BaseRow result = null;
-
             foreach (BaseRow item in Database.Instance.SelectTable(nameObject))
             {
                 if (item.ID == id)
                 {
-                    result = item;
+                    return item;
                 }
             }
 
-            return result;
+            return null;
         }
     }
 }

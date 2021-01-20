@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ExampleOOP
 {
-    public abstract class BaseDAO
+    public abstract class BaseDAO : IDAO
     {
         public const string CATEGORY = "category";
         public const string PRODUCT = "product";

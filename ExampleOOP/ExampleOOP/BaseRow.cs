@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ExampleOOP
 {
-    public abstract class BaseRow
+    public abstract class BaseRow : IEntity
     {
         private string name;
         private int id;
@@ -30,11 +30,6 @@ namespace ExampleOOP
             set { name = value; }
         }
 
-        /*public string Name { get; set; }
-
-        public int ID { get; set; }
-        public int CategoryID { get; set; }
-*/
         protected BaseRow()
         {
 

@@ -39,7 +39,10 @@ namespace ExampleOOP
         /// <returns> Data in select table</returns>
         public List<BaseRow> FindAll(string nameObject)
         {
-            return Database.Instance.SelectTable(nameObject);
+            if (Database.Instance.SelectTable(nameObject).Count > 0)
+                return Database.Instance.SelectTable(nameObject);
+            else
+                return null;
         }
 
         /// <summary> Find data by name

@@ -53,6 +53,14 @@ namespace ExampleOOP
         /// <returns> object in  the baseRow, data in select table </returns>
         public BaseRow FindByName(string name, string nameObject)
         {
+            foreach (BaseRow item in Database.Instance.SelectTable(nameObject))
+            {
+                if (item.GetName() == name)
+                {
+                    return item;
+                }
+            }
+
             return null;
         }
 

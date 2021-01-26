@@ -13,13 +13,9 @@ namespace ExampleOOP.Demo
         public void InsertTableTest(string name, dynamic row)
         {
             if (Database.Instance.InsertTable(name, row) == false)
-            {
                 Console.WriteLine("Insert không thành công");
-            }
             else
-            {
                 Console.WriteLine("Insert thành công");
-            }
         }
 
         public void SelectTableTest(string name)
